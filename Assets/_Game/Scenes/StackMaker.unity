@@ -289,6 +289,7 @@ MonoBehaviour:
   pushLayer:
     serializedVersion: 2
     m_Bits: 2048
+  yellowPrefab: {fileID: 8505379840413697512, guid: 4bd1c4f8fd7dc124aa60c8c989b6be99, type: 3}
 --- !u!4 &406771283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2580899147284204563, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
@@ -635,8 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e82686fe26f4d4bb40c1830050f527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Yellow: {fileID: 8505379840413697512, guid: 4bd1c4f8fd7dc124aa60c8c989b6be99, type: 3}
-  Score: 0
 --- !u!1 &1385320671
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,4 +923,3 @@ MonoBehaviour:
   - {fileID: 6523192967249709757, guid: 7314dd9c401512241924cec30c2bcb92, type: 3}
   currentLevel: {fileID: 0}
   currentLevelIndex: 0
-  player: {fileID: 353654850}

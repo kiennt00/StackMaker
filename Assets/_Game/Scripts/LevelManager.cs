@@ -4,42 +4,58 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public List<Level> levels = new List<Level>();
+    public List<Level> levels = new();
     public Level currentLevel;
-    public int currentLevelIndex = 0;
+    public int currentLevelIndex;
+    public int highestLevel;
 
-    public void Start()
+    private void Start()
     {
-        InitLevel();
+        highestLevel = GetHighestLevel();
     }
 
-    public void InitLevel()
-    {
-        OnLoadLevel(currentLevelIndex);
-        this.PostEvent(EventID.OnInitLevel);
-    }
-
-    public void OnLoadLevel(int level)
+    public void OnLoadLevel(int levelIndex)
     {
         if (currentLevel != null)
         {
             Destroy(currentLevel.gameObject);
         }
 
-        currentLevel = Instantiate(levels[level]);
+        if (levelIndex < levels.Count)
+        {
+            currentLevelIndex = levelIndex;
+            currentLevel = Instantiate(levels[levelIndex]);
+            currentLevel.InitLevel();
+        }        
+    }
+
+    public void PlayAgain()
+    {
+        OnLoadLevel(currentLevelIndex);
     }
 
     public void NextLevel()
     {
         currentLevelIndex++;
         
-        if (currentLevelIndex + 1 <= levels.Count)
+        if (currentLevelIndex < levels.Count)
         {
-            InitLevel();
+            OnLoadLevel(currentLevelIndex);
+
+            if (highestLevel < currentLevelIndex)
+            {
+                highestLevel = currentLevelIndex;
+                PlayerPrefs.SetInt("highestLevel", highestLevel);
+            }
         }
         else
         {
             Debug.Log("Congrats");
         }       
+    }
+
+    public int GetHighestLevel()
+    {
+        return PlayerPrefs.GetInt("highestLevel", 0);
     }
 }

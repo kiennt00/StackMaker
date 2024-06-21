@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     private bool isMoving;
 
-    private Stack<GameObject> bricks = new Stack<GameObject>();
+    private Stack<GameObject> bricks = new();
 
     [SerializeField] GameObject Brick;
     [SerializeField] Transform playerTF;
@@ -29,11 +29,13 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask endPointLayer;
     [SerializeField] LayerMask pushLayer;
 
+    [SerializeField] GameObject yellowPrefab;
+
     private float brickHeight = 0.2998985f;
 
     private void Start()
     {
-        this.RegisterListener(EventID.OnInitLevel, (param) => OnInitLevel());
+        this.RegisterListener(EventID.OnInitLevel, (param) => OnInit(param));
     }
 
     private void Update()
@@ -44,9 +46,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnInit()
+    public void OnInit(object param)
     {
         isMoving = false;
+        transform.position = (Vector3)param;
     }
 
     private void CheckInput()
@@ -150,7 +153,7 @@ public class Player : MonoBehaviour
             if (RemoveBrick())
             {
                 hit.collider.enabled = false;
-                GameObject yellow = Instantiate(GameManager.Ins.Yellow, hit.collider.transform);
+                GameObject yellow = Instantiate(yellowPrefab, hit.collider.transform);
                 yellow.transform.localPosition += new Vector3(0, 0.1f, 0);
             }
             else
@@ -273,10 +276,5 @@ public class Player : MonoBehaviour
         Brick = new GameObject("Brick");
         Brick.transform.SetParent(transform);
         Brick.transform.localPosition = Vector3.zero;  
-    }
-
-    private void OnInitLevel()
-    {
-        transform.position = LevelManager.Ins.currentLevel.startPos.position;
     }
 }

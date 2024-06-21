@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIWin : UICanvas
 {
-    [SerializeField] TextMeshProUGUI textScore;
+    [SerializeField] TextMeshProUGUI textScore, textLevel;
     [SerializeField] Button btnPlayAgain, btnNextLevel;
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class UIWin : UICanvas
         btnPlayAgain.onClick.AddListener(() =>
         {
             CloseDirectly();
-            LevelManager.Ins.InitLevel();
+            LevelManager.Ins.PlayAgain();
         });
     }
 
@@ -27,5 +27,6 @@ public class UIWin : UICanvas
     {
         base.Open();
         textScore.text = GameManager.Ins.Score.ToString();
+        textLevel.text = "Level " + (LevelManager.Ins.currentLevelIndex + 1).ToString();
     }
 }

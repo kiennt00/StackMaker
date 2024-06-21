@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class UIGameplay : UICanvas
 {
-    [SerializeField] TextMeshProUGUI textScore;
-
-    public override void Open()
-    {
-        base.Open();
-        UpdateTextScore();
-    }
+    [SerializeField] TextMeshProUGUI textScore, textLevel;
 
     public void UpdateTextScore()
     {
         textScore.text = GameManager.Ins.Score.ToString();
+    }
+
+    public void UpdateTextLevel()
+    {
+        textLevel.text = "Level " + (LevelManager.Ins.currentLevelIndex + 1).ToString();
     }
 }

@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public Transform startPos, endPos;
+    [SerializeField] Transform startPos, endPos;
+
+    public void InitLevel()
+    {
+        this.PostEvent(EventID.OnInitLevel, startPos.position);
+    }
 }

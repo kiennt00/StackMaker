@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class UILose : UICanvas
 {
-    [SerializeField] TextMeshProUGUI textScore;
+    [SerializeField] TextMeshProUGUI textScore, textLevel;
     [SerializeField] Button btnPlayAgain;
     private void Awake()
     {
         btnPlayAgain.onClick.AddListener(() =>
         {
             CloseDirectly();
-            LevelManager.Ins.InitLevel();
+            LevelManager.Ins.PlayAgain();
         });
     }
 
@@ -21,5 +21,6 @@ public class UILose : UICanvas
     {
         base.Open();
         textScore.text = GameManager.Ins.Score.ToString();
+        textLevel.text = "Level " + (LevelManager.Ins.currentLevelIndex + 1).ToString();
     }
 }

@@ -12,13 +12,13 @@ public class UIMainmenu : UICanvas
         btnPlay.onClick.AddListener(() =>
         {
             CloseDirectly();
-            
+            UIManager.Ins.OpenUI<UILevel>();
         });
 
         btnShop.onClick.AddListener(() =>
         {
             CloseDirectly();
-            
+            //UIManager.Ins.OpenUI<UIShop>();
         });
     }
 
