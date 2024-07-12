@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeThreshold: 50
-  Brick: {fileID: 1394789218}
+  brickParent: {fileID: 1394789219}
   playerTF: {fileID: 502885482}
   moveTime: 0.1
   wallLayer:
@@ -714,7 +714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394789219}
   m_Layer: 0
-  m_Name: Brick
+  m_Name: BrickParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,3 +923,4 @@ MonoBehaviour:
   - {fileID: 6523192967249709757, guid: 7314dd9c401512241924cec30c2bcb92, type: 3}
   currentLevel: {fileID: 0}
   currentLevelIndex: 0
+  highestLevel: 0

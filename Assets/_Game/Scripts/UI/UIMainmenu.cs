@@ -18,7 +18,7 @@ public class UIMainmenu : UICanvas
         btnShop.onClick.AddListener(() =>
         {
             CloseDirectly();
-            //UIManager.Ins.OpenUI<UIShop>();
+            UIManager.Ins.OpenUI<UIShop>();
         });
     }
 

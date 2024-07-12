@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private Stack<GameObject> bricks = new();
 
-    [SerializeField] GameObject Brick;
+    [SerializeField] Transform brickParent;
     [SerializeField] Transform playerTF;
     [SerializeField] float moveTime;
 
@@ -233,7 +233,7 @@ public class Player : MonoBehaviour
     private void AddBrick(GameObject brickObj)
     {
         bricks.Push(brickObj);
-        brickObj.transform.SetParent(Brick.transform, false);
+        brickObj.transform.SetParent(brickParent);
         brickObj.transform.position = playerTF.position;
 
         Vector3 playerPos = playerTF.position;
@@ -269,12 +269,14 @@ public class Player : MonoBehaviour
         playerTF.position = playerPos;
 
         bricks.Clear();
-        if (Brick != null)
+        if (brickParent != null)
         {
-            Destroy(Brick);
+            Destroy(brickParent.gameObject);
         }
-        Brick = new GameObject("Brick");
-        Brick.transform.SetParent(transform);
-        Brick.transform.localPosition = Vector3.zero;  
+
+        GameObject brickParentObj = new GameObject("BrickParent");
+        brickParent = brickParentObj.transform; 
+        brickParent.SetParent(transform);
+        brickParent.localPosition = Vector3.zero;  
     }
 }
